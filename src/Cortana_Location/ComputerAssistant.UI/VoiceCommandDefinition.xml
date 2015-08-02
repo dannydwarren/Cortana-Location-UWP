@@ -4,24 +4,35 @@
     <AppName> Scotty </AppName>
     <Example> Beam me up Scotty! </Example>
 
-    <Command Name="currentLocation">
+ 
+    <!--<Command Name="currentLocation">
       <Example>  Where am I?  </Example>
       <ListenFor > Where am I </ListenFor>
       <ListenFor > What is this place </ListenFor>
       <Feedback> Locating... </Feedback>
-      <Navigate/>
+      <VoiceCommandService Target="/"/>
+    </Command>-->
+    
+    <Command Name="captainsLog">
+      <Example>  Captain's Log  </Example>
+      <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
+      <Feedback> Logging... </Feedback>
+      <Navigate Target="Pages/RecordNotesPage.xaml"/>
     </Command>
 
-    <Command Name="saveLocation" >
+    <Command Name="locationLog" >
       <Example>  Beam me up Scotty!  </Example>
       <ListenFor RequireAppName="AfterPhrase" > Beam me up </ListenFor>
       <!--<ListenFor RequireAppName="BeforeOrAfterPhrase" > Teleport </ListenFor>-->
       <!--<ListenFor RequireAppName="BeforePhrase" > Do it [now] </ListenFor>-->
       <ListenFor RequireAppName="ExplicitlySpecified" > [Hey] {builtin:AppName} this place is {*}</ListenFor>
       <Feedback> Teleportation complete! </Feedback>
-      <Navigate/>
+      <Navigate Target="Pages/LocationServicesPage.xaml"/>
     </Command>
 
+    <PhraseTopic Label="CaptainsLogDictation" Scenario="Natural Language">
+      
+    </PhraseTopic>
     <!--<PhraseList Label="user">
       <Item>Sam</Item>
       <Item>John</Item>

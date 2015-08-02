@@ -28,11 +28,20 @@ namespace ComputerAssistant.UI.Pages
 				//TODO: Go to disk and get the file.
 			}
 
+			if ( e.Parameter != null )
+			{
+				AddLogEntry(e.Parameter.ToString());
+			}
+
 		}
 
-		private void AddLogEntry( string entryText )
+		private void AddLogEntry( string logEntryText )
 		{
-			LogEntries.Insert( 0, new CaptainsLogEntry( entryText ) );
+			if ( string.IsNullOrWhiteSpace(logEntryText) )
+			{
+				return;
+			}
+			LogEntries.Insert( 0, new CaptainsLogEntry( logEntryText ) );
 		}
 	}
 }
