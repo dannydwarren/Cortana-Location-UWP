@@ -1,0 +1,42 @@
+﻿<Page x:Class="ComputerAssistant.UI.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:ComputerAssistant.UI"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+	  x:Name="ThisControl">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:PageHeaderControl Grid.Row="0"
+                                 HostPage="{Binding ElementName=ThisControl}"
+                                 PageHeaderText="WELCOME"
+                                 PageSubHeaderText="COMPUTER ASSISTANT DEMO" />
+
+        <Grid Grid.Row="1"
+              Margin="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="Cortana Integration"
+                    Click="RecordNotesDemoClickHandler"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" />
+            <Button Grid.Column="2"
+                    Content="Location Services"
+					Click="LocationServicesDemoClickHandler"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" />
+        </Grid>
+    </Grid>
+</Page>

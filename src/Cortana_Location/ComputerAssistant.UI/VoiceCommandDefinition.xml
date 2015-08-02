@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="UniversalAppCommandSet_en-us">
+    <AppName> Scotty </AppName>
+    <Example> Beam me up Scotty! </Example>
+
+    <Command Name="currentLocation">
+      <Example>  Where am I?  </Example>
+      <ListenFor > Where am I </ListenFor>
+      <ListenFor > What is this place </ListenFor>
+      <Feedback> Locating... </Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="saveLocation" >
+      <Example>  Beam me up Scotty!  </Example>
+      <ListenFor RequireAppName="AfterPhrase" > Beam me up </ListenFor>
+      <!--<ListenFor RequireAppName="BeforeOrAfterPhrase" > Teleport </ListenFor>-->
+      <!--<ListenFor RequireAppName="BeforePhrase" > Do it [now] </ListenFor>-->
+      <ListenFor RequireAppName="ExplicitlySpecified" > [Hey] {builtin:AppName} this place is {*}</ListenFor>
+      <Feedback> Teleportation complete! </Feedback>
+      <Navigate/>
+    </Command>
+
+    <!--<PhraseList Label="user">
+      <Item>Sam</Item>
+      <Item>John</Item>
+    </PhraseList>-->
+  </CommandSet>
+</VoiceCommands>

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps">
+    <Style TargetType="maps:MapControl">
+        <Setter Property="MapServiceToken"
+                Value="AoVdxZohL3lp4LcPCJXL~wmxPwnD1fBjdKOqIXLt9Uw~AnLo4PmMp8FgrkNJ4Nt-ucvz2C2bOk8fXNVCf_bA9ADRdAEgCGCR3KtkL91b4IyR" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,75 @@
+﻿<Page x:Class="ComputerAssistant.UI.Pages.RecordNotesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:ComputerAssistant.UI"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      x:Name="ThisControl">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:PageHeaderControl Grid.Row="0"
+								 HostPage="{Binding ElementName=ThisControl}"
+                                 PageHeaderText="RECORD NOTES DEMO"
+                                 PageSubHeaderText="CAPTAINS LOG" />
+
+        <Grid Grid.Row="1"
+              Margin="30">
+            <Grid.Resources>
+                <GridLength x:Key="StardateColumnWidth">1*</GridLength>
+                <GridLength x:Key="CurrentDateColumnWidth">2*</GridLength>
+                <GridLength x:Key="LogColumnWidth">5*</GridLength>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource StardateColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource CurrentDateColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource LogColumnWidth}" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="STARDATE" />
+                <TextBlock Grid.Column="1"
+                           Text="CURRENT DATE" />
+                <TextBlock Grid.Column="2"
+                           Text="LOG ENTRY" />
+
+            </Grid>
+
+            <ItemsControl Grid.Row="1"
+                          ItemsSource="{Binding Path=LogEntries, ElementName=ThisControl}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource StardateColumnWidth}" />
+                                <ColumnDefinition Width="{StaticResource CurrentDateColumnWidth}" />
+                                <ColumnDefinition Width="{StaticResource LogColumnWidth}" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding Path=StardateString}" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Path=CurrentDateString}" />
+                            <TextBlock Grid.Column="2"
+                                       Text="{Binding Path=LogEntry}" />
+
+                        </Grid>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</Page>
