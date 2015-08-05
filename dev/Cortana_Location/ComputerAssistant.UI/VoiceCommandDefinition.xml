@@ -4,7 +4,7 @@
     <AppName> Computer </AppName>
     <Example> Beam me up Scotty! </Example>
 
- 
+
     <!--<Command Name="currentLocation">
       <Example>  Where am I?  </Example>
       <ListenFor > Where am I </ListenFor>
@@ -12,17 +12,14 @@
       <Feedback> Locating... </Feedback>
       <VoiceCommandService Target="/"/>
     </Command>-->
-    
+
     <Command Name="captainsLog">
       <Example>  Captain's Log  </Example>
-      <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
+      <ListenFor > Captains Log </ListenFor>
       <Feedback> Logging... </Feedback>
       <Navigate Target="Pages/RecordNotesPage.xaml"/>
     </Command>
 
-    <!--<PhraseList Label="user">
-      <Item>Sam</Item>
-      <Item>John</Item>
-    </PhraseList>-->
+    <!--<PhraseTopic Label="CaptainsLogDictation" Scenario="Dictation"/>-->
   </CommandSet>
 </VoiceCommands>
