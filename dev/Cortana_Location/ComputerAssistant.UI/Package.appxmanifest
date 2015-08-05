@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="fb653fe4-89fe-432f-ba6a-e9ef0f29b014" Publisher="CN=danny" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="fb653fe4-89fe-432f-ba6a-e9ef0f29b014" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="cf7433cc-5422-4b06-bd1d-d0d0db9b796e" Publisher="CN=Danny Local" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="cf7433cc-5422-4b06-bd1d-d0d0db9b796e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>ComputerAssistant</DisplayName>
-    <PublisherDisplayName>danny</PublisherDisplayName>
+    <DisplayName>ComputerAssistant.UI</DisplayName>
+    <PublisherDisplayName>Danny Local</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ComputerAssistant.UI.App">
-      <uap:VisualElements DisplayName="Computer Assistant" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Computer Assistant" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Computer Assistant" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ComputerAssistant.UI" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

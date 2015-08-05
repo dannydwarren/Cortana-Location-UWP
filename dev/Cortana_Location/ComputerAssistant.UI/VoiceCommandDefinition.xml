@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="en-us" Name="UniversalAppCommandSet_en-us">
-    <AppName> Scotty </AppName>
+    <AppName> Computer </AppName>
     <Example> Beam me up Scotty! </Example>
 
  
@@ -20,19 +20,6 @@
       <Navigate Target="Pages/RecordNotesPage.xaml"/>
     </Command>
 
-    <Command Name="locationLog" >
-      <Example>  Beam me up Scotty!  </Example>
-      <ListenFor RequireAppName="AfterPhrase" > Beam me up </ListenFor>
-      <!--<ListenFor RequireAppName="BeforeOrAfterPhrase" > Teleport </ListenFor>-->
-      <!--<ListenFor RequireAppName="BeforePhrase" > Do it [now] </ListenFor>-->
-      <ListenFor RequireAppName="ExplicitlySpecified" > [Hey] {builtin:AppName} this place is {*}</ListenFor>
-      <Feedback> Teleportation complete! </Feedback>
-      <Navigate Target="Pages/LocationServicesPage.xaml"/>
-    </Command>
-
-    <PhraseTopic Label="CaptainsLogDictation" Scenario="Natural Language">
-      
-    </PhraseTopic>
     <!--<PhraseList Label="user">
       <Item>Sam</Item>
       <Item>John</Item>

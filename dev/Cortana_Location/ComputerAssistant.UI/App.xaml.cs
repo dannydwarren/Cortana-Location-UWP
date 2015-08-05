@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ComputerAssistant.UI.Pages;
+using System.Threading.Tasks;
+using Windows.Foundation;
 
 namespace ComputerAssistant.UI
 {
@@ -34,8 +28,14 @@ namespace ComputerAssistant.UI
 		{
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
-			this.RegisterVoiceCommands();
+			RegisterVoiceCommands();
 			this.UnhandledException += App_UnhandledException;
+			TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+		}
+
+		private void TaskScheduler_UnobservedTaskException( object sender, UnobservedTaskExceptionEventArgs e )
+		{
+			Debug.WriteLine( e.Exception );
 		}
 
 		private void App_UnhandledException( object sender, UnhandledExceptionEventArgs e )
@@ -47,8 +47,17 @@ namespace ComputerAssistant.UI
 		{
 			var storageFile =
 				await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync( new Uri( "ms-appx:///VoiceCommandDefinition.xml" ) );
-			await
-				Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
+
+			try
+			{
+				await  Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
+
+				Debug.WriteLine( "Voice Commands Registered" );
+			}
+			catch ( Exception ex )
+			{
+				Debug.WriteLine( ex );
+			}
 		}
 
 		/// <summary>

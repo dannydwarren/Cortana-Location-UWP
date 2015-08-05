@@ -9,10 +9,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/MapResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-       
-			<converters:GeopointToStringConverter x:Key="GeopointToStringConverter" />
-			
+
+            <converters:GeopointToStringConverter x:Key="GeopointToStringConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>
