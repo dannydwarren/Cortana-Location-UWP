@@ -50,7 +50,7 @@ namespace ComputerAssistant.UI
 
 			try
 			{
-				await  Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
+				await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
 
 				Debug.WriteLine( "Voice Commands Registered" );
 			}
@@ -139,8 +139,8 @@ namespace ComputerAssistant.UI
 				{
 					IReadOnlyList<string> captainsLogDictation;
 					speechRecognitionResult.SemanticInterpretation.Properties.TryGetValue( "CaptainsLogDictation", out captainsLogDictation );
-
-					_rootFrame.NavigateTo<RecordNotesPage>( captainsLogDictation.FirstOrDefault() );
+					string result = captainsLogDictation.FirstOrDefault();
+					_rootFrame.NavigateTo<RecordNotesPage>( result );
 				}
 			}
 
