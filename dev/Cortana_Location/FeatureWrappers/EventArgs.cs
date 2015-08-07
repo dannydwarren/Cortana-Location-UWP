@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ComputerAssistant.UI.FeatureWrappers
+namespace FeatureWrappers
 {
 	public class EventArgs<T>:EventArgs
 	{

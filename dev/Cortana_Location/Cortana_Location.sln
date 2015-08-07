@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerAssistant.UI", "Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaAssistant.CortanaAppService", "CortanaAssistant.CortanaAppService\CortanaAssistant.CortanaAppService.csproj", "{31D1B55B-1324-40C3-8DA1-67A5230BB795}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureWrappers", "FeatureWrappers\FeatureWrappers.csproj", "{11A0E6A6-5890-4213-9BBD-F947E10865F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,22 @@ Global
 		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x64.Build.0 = Release|x64
 		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x86.ActiveCfg = Release|x86
 		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x86.Build.0 = Release|x86
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|ARM.ActiveCfg = Debug|ARM
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|ARM.Build.0 = Debug|ARM
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|x64.ActiveCfg = Debug|x64
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|x64.Build.0 = Debug|x64
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|x86.ActiveCfg = Debug|x86
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Debug|x86.Build.0 = Debug|x86
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|ARM.ActiveCfg = Release|ARM
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|ARM.Build.0 = Release|ARM
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x64.ActiveCfg = Release|x64
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x64.Build.0 = Release|x64
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x86.ActiveCfg = Release|x86
+		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

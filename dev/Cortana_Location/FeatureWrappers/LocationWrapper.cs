@@ -6,7 +6,7 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
-namespace ComputerAssistant.UI.FeatureWrappers
+namespace FeatureWrappers
 {
 	public class LocationWrapper
 	{

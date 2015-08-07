@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FeatureWrappers;
 using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.VoiceCommands;
+using Windows.Devices.Geolocation;
 
 namespace CortanaAssistant.CortanaAppService
 {
@@ -48,8 +50,14 @@ namespace CortanaAssistant.CortanaAppService
 					{
 						case "currentLocation":
 							var userMessage = new VoiceCommandUserMessage();
+
+							//Illegal? Geoposition geoposition = await LocationWrapper.Instance.GetSingleShotLocationAsync();
+
 							//http://www.directionsmag.com/site/latlong-converter/
 							string message = "Current location Decimal Degrees. Latitude 33.1362704. Longitude -117.2943426.";
+							//string message = "Current location Decimal Degrees. "
+							//	+ $"Latitude {geoposition.Coordinate.Point.Position.Latitude}. "
+							//	+ $"Longitude {geoposition.Coordinate.Point.Position.Longitude}.";
 							userMessage.DisplayMessage = message;
 							userMessage.SpokenMessage = message;
 							response = VoiceCommandResponse.CreateResponse( userMessage );
@@ -67,7 +75,7 @@ namespace CortanaAssistant.CortanaAppService
 				catch ( Exception ex )
 				{
 					Debug.WriteLine( ex );
-					throw;
+					LaunchAppInForeground();
 				}
 				finally
 				{
