@@ -5,16 +5,21 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerAssistant.UI", "ComputerAssistant.UI\ComputerAssistant.UI.csproj", "{68120D7B-083F-45D5-B6D1-A4D0B555162E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaAssistant.CortanaAppService", "CortanaAssistant.CortanaAppService\CortanaAssistant.CortanaAppService.csproj", "{31D1B55B-1324-40C3-8DA1-67A5230BB795}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|ARM.ActiveCfg = Debug|ARM
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|ARM.Build.0 = Debug|ARM
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -24,6 +29,7 @@ Global
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|x86.ActiveCfg = Debug|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|x86.Build.0 = Debug|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Debug|x86.Deploy.0 = Debug|x86
+		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|Any CPU.ActiveCfg = Release|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|ARM.ActiveCfg = Release|ARM
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|ARM.Build.0 = Release|ARM
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|ARM.Deploy.0 = Release|ARM
@@ -33,6 +39,22 @@ Global
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|x86.ActiveCfg = Release|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|x86.Build.0 = Release|x86
 		{68120D7B-083F-45D5-B6D1-A4D0B555162E}.Release|x86.Deploy.0 = Release|x86
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|ARM.ActiveCfg = Debug|ARM
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|ARM.Build.0 = Debug|ARM
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|x64.ActiveCfg = Debug|x64
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|x64.Build.0 = Debug|x64
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|x86.ActiveCfg = Debug|x86
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Debug|x86.Build.0 = Debug|x86
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|ARM.ActiveCfg = Release|ARM
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|ARM.Build.0 = Release|ARM
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x64.ActiveCfg = Release|x64
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x64.Build.0 = Release|x64
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x86.ActiveCfg = Release|x86
+		{31D1B55B-1324-40C3-8DA1-67A5230BB795}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

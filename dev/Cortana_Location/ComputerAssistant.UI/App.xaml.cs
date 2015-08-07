@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using ComputerAssistant.UI.Pages;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Media.SpeechRecognition;
 
 namespace ComputerAssistant.UI
 {
@@ -142,7 +143,7 @@ namespace ComputerAssistant.UI
 			if ( args.Kind == ActivationKind.VoiceCommand )
 			{
 				var commandArgs = args as VoiceCommandActivatedEventArgs;
-				var speechRecognitionResult = commandArgs.Result;
+				SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 				string voiceCommandName = speechRecognitionResult.RulePath[0];
 
 				foreach ( var item in speechRecognitionResult.RulePath )

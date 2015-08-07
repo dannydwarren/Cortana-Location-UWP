@@ -17,7 +17,14 @@
       <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
       <Feedback> Creating Captains Log... </Feedback>
       <Navigate Target="Pages/RecordNotesPage.xaml"/>
-      
+
+    </Command>
+
+    <Command Name="currentLocation">
+      <Example>Where Am I?</Example>
+      <ListenFor>Where am I</ListenFor>
+      <Feedback>Found you!</Feedback>
+      <VoiceCommandService Target="ComputerAssistantCortanaAppService"/>
     </Command>
 
     <Command Name="locationLog" >
