@@ -46,11 +46,13 @@ namespace ComputerAssistant.UI
 		private async void RegisterVoiceCommands()
 		{
 			var storageFile =
-				await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync( new Uri( "ms-appx:///VoiceCommandDefinition.xml" ) );
+				await Windows.Storage.StorageFile
+				.GetFileFromApplicationUriAsync( new Uri( "ms-appx:///VoiceCommandDefinition.xml" ) );
 
 			try
 			{
-				await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
+				await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager
+					.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
 
 				Debug.WriteLine( "Voice Commands Registered" );
 			}
@@ -126,25 +128,52 @@ namespace ComputerAssistant.UI
 		{
 			base.OnActivated( args );
 
-			//TODO: Handle if app isn't launched yet
-			//TODO: Get dictation text out
-			//TODO: Streamline navigation?
+			_rootFrame = Window.Current.Content as Frame;
+
+			if ( _rootFrame == null )
+			{
+				_rootFrame = new Frame();
+
+				_rootFrame.NavigationFailed += OnNavigationFailed;
+
+				Window.Current.Content = _rootFrame;
+			}
+
 			if ( args.Kind == ActivationKind.VoiceCommand )
 			{
 				var commandArgs = args as VoiceCommandActivatedEventArgs;
 				var speechRecognitionResult = commandArgs.Result;
+				string voiceCommandName = speechRecognitionResult.RulePath[0];
+
+				foreach ( var item in speechRecognitionResult.RulePath )
+				{
+					Debug.WriteLine( item );
+				}
+
+
 				var command = speechRecognitionResult.Text;
 
-				if ( command.StartsWith( "Captains Log" ) )
+				if ( string.Equals( voiceCommandName, "captainsLog" ) )
 				{
 					IReadOnlyList<string> captainsLogDictation;
 					speechRecognitionResult.SemanticInterpretation.Properties.TryGetValue( "CaptainsLogDictation", out captainsLogDictation );
-					string result = captainsLogDictation.FirstOrDefault();
-					_rootFrame.NavigateTo<RecordNotesPage>( result );
+					string dictationText = captainsLogDictation.FirstOrDefault();
+
+					_rootFrame.NavigateTo<RecordNotesPage>( dictationText );
+
+				}
+				else if ( string.Equals( voiceCommandName, "locationLog" ) )
+				{
+					_rootFrame.NavigateTo<LocationServicesPage>();
+				}
+				else
+				{
+					//ERROR: DID NOT FIND VOICE COMMAND
+					_rootFrame.NavigateTo<MainPage>();
 				}
 			}
 
-
+			Window.Current.Activate();
 		}
 	}
 }

@@ -59,7 +59,8 @@ namespace ComputerAssistant.UI.Pages
 
 		private static async Task<bool> CheckLocationAccessAsync()
 		{
-			GeolocationAccessStatus geolocationAccessStatus = await LocationWrapper.Instance.RequestAccessToLocationData();
+			GeolocationAccessStatus geolocationAccessStatus = 
+				await LocationWrapper.Instance.RequestAccessToLocationData();
 			if (geolocationAccessStatus != GeolocationAccessStatus.Allowed)
 			{
 				await new MessageDialog("Access to Location Data is Denied.").ShowAsync();
@@ -106,7 +107,7 @@ namespace ComputerAssistant.UI.Pages
 
 		private async void OpenLocationSettingsButtonClickHandler( object sender, RoutedEventArgs e )
 		{
-			await Launcher.LaunchUriAsync( new Uri( "ms-settings:privacy-location " ) );
+			await Launcher.LaunchUriAsync( new Uri( "ms-settings:privacy-location" ) );
 		}
 	}
 }

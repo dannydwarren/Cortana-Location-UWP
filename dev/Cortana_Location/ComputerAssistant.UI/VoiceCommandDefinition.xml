@@ -2,7 +2,7 @@
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="en-us" Name="UniversalAppCommandSet_en-us">
     <AppName> Computer </AppName>
-    <Example> Beam me up Scotty! </Example>
+    <Example> Captain's Log </Example>
 
     <!--<Command Name="currentLocation">
       <Example>  Where am I?  </Example>
@@ -15,13 +15,14 @@
     <Command Name="captainsLog">
       <Example>  Captain's Log  </Example>
       <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
-      <Feedback> Logging... </Feedback>
+      <Feedback> Creating Captains Log... </Feedback>
       <Navigate Target="Pages/RecordNotesPage.xaml"/>
+      
     </Command>
 
     <Command Name="locationLog" >
-      <Example>  Beam me up Scotty!  </Example>
-      <ListenFor RequireAppName="AfterPhrase" > Beam me up </ListenFor>
+      <Example>  Beam me up, Scotty!  </Example>
+      <ListenFor RequireAppName="AfterPhrase" > Beam me up Scotty </ListenFor>
       <!--<ListenFor RequireAppName="BeforeOrAfterPhrase" > Teleport </ListenFor>-->
       <!--<ListenFor RequireAppName="BeforePhrase" > Do it [now] </ListenFor>-->
       <ListenFor RequireAppName="ExplicitlySpecified" > [Hey] {builtin:AppName} this place is {*}</ListenFor>
@@ -29,7 +30,7 @@
       <Navigate Target="Pages/LocationServicesPage.xaml"/>
     </Command>
 
-    <PhraseTopic Label="CaptainsLogDictation" Scenario="Natural Language">
+    <PhraseTopic Label="CaptainsLogDictation" Scenario="Dictation">
 
     </PhraseTopic>
     <!--<PhraseList Label="user">
