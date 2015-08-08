@@ -13,8 +13,10 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <MediaElement x:Name="TextToSpeechMediaElement" />
+
         <local:PageHeaderControl Grid.Row="0"
-								 HostPage="{Binding ElementName=ThisControl}"
+                                 HostPage="{Binding ElementName=ThisControl}"
                                  PageHeaderText="RECORD NOTES DEMO"
                                  PageSubHeaderText="CAPTAINS LOG" />
 
