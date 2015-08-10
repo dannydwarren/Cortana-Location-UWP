@@ -115,7 +115,7 @@ namespace FeatureWrappers
 			_continuousGeolocator = new Geolocator()
 			{
 				DesiredAccuracy = PositionAccuracy.High,
-				ReportInterval = 2000,
+				ReportInterval = 1000,
 				MovementThreshold = 0,
 			};
 

@@ -14,14 +14,14 @@
         <Style x:Key="PageHeaderTextBlockStyle"
                TargetType="TextBlock">
             <Setter Property="FontSize"
-                    Value="100" />
+                    Value="75" />
             <Setter Property="TextAlignment"
                     Value="Center" />
         </Style>
         <Style x:Key="PageSubHeaderTextBlockStyle"
                TargetType="TextBlock">
             <Setter Property="FontSize"
-                    Value="75" />
+                    Value="50" />
             <Setter Property="TextAlignment"
                     Value="Center" />
         </Style>

@@ -36,27 +36,36 @@ namespace ComputerAssistant.UI.Pages
 		{
 			base.OnNavigatedTo( e );
 
-			if (await CheckLocationAccessAsync()) return;
+			if ( await CheckLocationAccessAsync() ) return;
 
 			BeamedLocations.CollectionChanged += BeamedLocations_CollectionChanged;
 
 			if ( !BeamedLocations.Any() )
 			{
 				//Seed for this run
-				await AddBeamedLocation();
+				Geoposition geoposition = await LocationWrapper.Instance.GetSingleShotLocationAsync();
+				await AddBeamedLocation( geoposition );
 
 				//TODO: Go to disk and get the file.
 			}
 
+			//Activate Continous Tracking
+			//LocationWrapper.Instance.LocationChanged += LocationChanged;
+			//await LocationWrapper.Instance.ActivateContinousLocationTracking();
+		}
+
+		private async void LocationChanged( object sender, Geoposition e )
+		{
+			await AddBeamedLocation( e );
 		}
 
 		private static async Task<bool> CheckLocationAccessAsync()
 		{
-			GeolocationAccessStatus geolocationAccessStatus = 
+			GeolocationAccessStatus geolocationAccessStatus =
 				await LocationWrapper.Instance.RequestAccessToLocationData();
-			if (geolocationAccessStatus != GeolocationAccessStatus.Allowed)
+			if ( geolocationAccessStatus != GeolocationAccessStatus.Allowed )
 			{
-				await new MessageDialog("Access to Location Data is Denied.").ShowAsync();
+				await new MessageDialog( "Access to Location Data is Denied." ).ShowAsync();
 				return true;
 			}
 			return false;
@@ -85,17 +94,17 @@ namespace ComputerAssistant.UI.Pages
 			}
 		}
 
-		private async Task AddBeamedLocation()
+		private async Task AddBeamedLocation( Geoposition geoposition )
 		{
-			if (await CheckLocationAccessAsync()) return;
+			if ( await CheckLocationAccessAsync() ) return;
 
-			Geoposition geoposition = await LocationWrapper.Instance.GetSingleShotLocationAsync();
 			BeamedLocations.Insert( 0, new BeamedLocation( geoposition ) );
 		}
 
 		private async void ForceBeamLocationClickHandler( object sender, RoutedEventArgs e )
 		{
-			await AddBeamedLocation();
+			Geoposition geoposition = await LocationWrapper.Instance.GetSingleShotLocationAsync();
+			await AddBeamedLocation( geoposition );
 		}
 
 		private async void OpenLocationSettingsButtonClickHandler( object sender, RoutedEventArgs e )

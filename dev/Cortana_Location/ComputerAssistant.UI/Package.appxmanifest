@@ -3,7 +3,7 @@
   <Identity Name="cf7433cc-5422-4b06-bd1d-d0d0db9b796e" Publisher="CN=danny" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="cf7433cc-5422-4b06-bd1d-d0d0db9b796e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>ComputerAssistant.UI</DisplayName>
+    <DisplayName>Computer</DisplayName>
     <PublisherDisplayName>Danny Local</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
