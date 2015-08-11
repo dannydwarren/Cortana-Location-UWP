@@ -7,7 +7,6 @@ using System;
 using Windows.Media.SpeechSynthesis;
 using Windows.Media.SpeechRecognition;
 using System.Threading;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace ComputerAssistant.UI.Pages
@@ -56,7 +55,9 @@ namespace ComputerAssistant.UI.Pages
 
 			while ( !cancellationSource.IsCancellationRequested )
 			{
-				ISpeechRecognitionConstraint commandConstraint = new SpeechRecognitionListConstraint( new[] { "Captains Log", "Computer Captains Log" } );
+				// Listen for user to say "Captains Log"
+				ISpeechRecognitionConstraint commandConstraint = 
+					new SpeechRecognitionListConstraint( new[] { "Captains Log", "Computer Captains Log" } );
 				speechRecognizerCaptainsLogCommand.Constraints.Add( commandConstraint );
 				await speechRecognizerCaptainsLogCommand.CompileConstraintsAsync();
 
@@ -68,11 +69,19 @@ namespace ComputerAssistant.UI.Pages
 				{
 					continue;
 				}
+				// Recognized user saying "Captains Log"
 
+				// Listen for the user's dictation entry
 				var captainsLogDictationRecognizer = new SpeechRecognizer();
-				ISpeechRecognitionConstraint dictationConstraint = new SpeechRecognitionTopicConstraint( SpeechRecognitionScenario.Dictation, "LogEntry", "LogEntryDictation" );
+
+				ISpeechRecognitionConstraint dictationConstraint = 
+					new SpeechRecognitionTopicConstraint( 
+						SpeechRecognitionScenario.Dictation, "LogEntry", "LogEntryDictation" );
+
 				captainsLogDictationRecognizer.Constraints.Add( dictationConstraint );
+
 				await captainsLogDictationRecognizer.CompileConstraintsAsync();
+
 				captainsLogDictationRecognizer.UIOptions.ExampleText = "Boldly going where no man or woman has gone before.";
 				captainsLogDictationRecognizer.UIOptions.AudiblePrompt = "Go ahead";
 				captainsLogDictationRecognizer.UIOptions.IsReadBackEnabled = true;
@@ -89,6 +98,7 @@ namespace ComputerAssistant.UI.Pages
 
 					continue;
 				}
+				// Recognized user's dictation entry
 
 				AddLogEntry( dictationResult.Text );
 

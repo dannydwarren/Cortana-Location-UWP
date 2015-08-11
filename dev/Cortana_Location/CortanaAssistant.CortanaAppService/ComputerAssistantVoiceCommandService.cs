@@ -14,7 +14,8 @@ namespace CortanaAssistant.CortanaAppService
 {
 	//IMPORTANT: MUST BE SEALED!
 	//	From the Documentation: 
-	//	"The background task class itself, and all other classes in the background task project, need to be sealed public classes."
+	//	"The background task class itself, and all other classes in the background task project,
+	//		need to be sealed public classes."
 	public sealed class ComputerAssistantVoiceCommandService : IBackgroundTask
 	{
 		BackgroundTaskDeferral _deferral;

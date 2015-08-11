@@ -4,14 +4,6 @@
     <AppName> Computer </AppName>
     <Example> Captain's Log </Example>
 
-    <!--<Command Name="currentLocation">
-      <Example>  Where am I?  </Example>
-      <ListenFor > Where am I </ListenFor>
-      <ListenFor > What is this place </ListenFor>
-      <Feedback> Locating... </Feedback>
-      <VoiceCommandService Target="/"/>
-    </Command>-->
-
     <Command Name="captainsLog">
       <Example>  Captain's Log  </Example>
       <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
@@ -29,20 +21,12 @@
 
     <Command Name="locationLog" >
       <Example>  Beam me up, Scotty!  </Example>
-      <ListenFor RequireAppName="AfterPhrase" > Beam me up Scotty </ListenFor>
-      <!--<ListenFor RequireAppName="BeforeOrAfterPhrase" > Teleport </ListenFor>-->
-      <!--<ListenFor RequireAppName="BeforePhrase" > Do it [now] </ListenFor>-->
-      <ListenFor RequireAppName="ExplicitlySpecified" > [Hey] {builtin:AppName} this place is {*}</ListenFor>
+      <ListenFor> Beam me up Scotty </ListenFor>
       <Feedback> Teleportation complete! </Feedback>
       <Navigate Target="Pages/LocationServicesPage.xaml"/>
     </Command>
 
-    <PhraseTopic Label="CaptainsLogDictation" Scenario="Dictation">
-
-    </PhraseTopic>
-    <!--<PhraseList Label="user">
-      <Item>Sam</Item>
-      <Item>John</Item>
-    </PhraseList>-->
+    <PhraseTopic Label="CaptainsLogDictation" Scenario="Dictation"/>
+    
   </CommandSet>
 </VoiceCommands>

@@ -14,13 +14,8 @@ using Windows.UI.Xaml.Navigation;
 using ComputerAssistant.UI.Models;
 using FeatureWrappers;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace ComputerAssistant.UI.Pages
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
 	public sealed partial class LocationServicesPage : Page
 	{
 		public LocationServicesPage()
@@ -76,9 +71,12 @@ namespace ComputerAssistant.UI.Pages
 			base.OnNavigatedFrom( e );
 
 			BeamedLocations.CollectionChanged -= BeamedLocations_CollectionChanged;
+
+			LocationWrapper.Instance.DeactivateContinuousLocaitonTracking();
 		}
 
-		private void BeamedLocations_CollectionChanged( object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e )
+		private void BeamedLocations_CollectionChanged( object sender, 
+			System.Collections.Specialized.NotifyCollectionChangedEventArgs e )
 		{
 			BeamedLocation[] newBeamedLocations = e.NewItems.OfType<BeamedLocation>().ToArray();
 

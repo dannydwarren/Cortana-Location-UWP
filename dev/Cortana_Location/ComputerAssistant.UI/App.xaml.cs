@@ -9,22 +9,14 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using ComputerAssistant.UI.Pages;
 using System.Threading.Tasks;
-using Windows.Foundation;
 using Windows.Media.SpeechRecognition;
 
 namespace ComputerAssistant.UI
 {
-	/// <summary>
-	/// Provides application-specific behavior to supplement the default Application class.
-	/// </summary>
 	sealed partial class App : Application
 	{
 		private Frame _rootFrame;
 
-		/// <summary>
-		/// Initializes the singleton application object.  This is the first line of authored code
-		/// executed, and as such is the logical equivalent of main() or WinMain().
-		/// </summary>
 		public App()
 		{
 			this.InitializeComponent();
@@ -63,11 +55,6 @@ namespace ComputerAssistant.UI
 			}
 		}
 
-		/// <summary>
-		/// Invoked when the application is launched normally by the end user.  Other entry points
-		/// will be used such as when the application is launched to open a specific file.
-		/// </summary>
-		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched( LaunchActivatedEventArgs e )
 		{
 			_rootFrame = Window.Current.Content as Frame;
@@ -101,23 +88,11 @@ namespace ComputerAssistant.UI
 			Window.Current.Activate();
 		}
 
-		/// <summary>
-		/// Invoked when Navigation to a certain page fails
-		/// </summary>
-		/// <param name="sender">The Frame which failed navigation</param>
-		/// <param name="e">Details about the navigation failure</param>
 		void OnNavigationFailed( object sender, NavigationFailedEventArgs e )
 		{
 			throw new Exception( "Failed to load Page " + e.SourcePageType.FullName );
 		}
 
-		/// <summary>
-		/// Invoked when application execution is being suspended.  Application state is saved
-		/// without knowing whether the application will be terminated or resumed with the contents
-		/// of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
 		private void OnSuspending( object sender, SuspendingEventArgs e )
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
@@ -157,7 +132,8 @@ namespace ComputerAssistant.UI
 				if ( string.Equals( voiceCommandName, "captainsLog" ) )
 				{
 					IReadOnlyList<string> captainsLogDictation;
-					speechRecognitionResult.SemanticInterpretation.Properties.TryGetValue( "CaptainsLogDictation", out captainsLogDictation );
+					speechRecognitionResult.SemanticInterpretation.Properties
+						.TryGetValue( "CaptainsLogDictation", out captainsLogDictation );
 					string dictationText = captainsLogDictation.FirstOrDefault();
 
 					_rootFrame.NavigateTo<RecordNotesPage>( dictationText );

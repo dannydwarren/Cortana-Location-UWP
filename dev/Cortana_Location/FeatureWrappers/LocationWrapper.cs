@@ -11,9 +11,8 @@ namespace FeatureWrappers
 	public class LocationWrapper
 	{
 		private Geolocator _continuousGeolocator;
-
-
-
+		
+		
 		#region Singleton
 		private static LocationWrapper _instance;
 		public static LocationWrapper Instance => _instance ?? ( _instance = new LocationWrapper() );
@@ -23,8 +22,7 @@ namespace FeatureWrappers
 
 		}
 		#endregion
-
-
+		
 
 		public event EventHandler<Geoposition> LocationChanged = delegate { };
 		private void OnLocationChanged( Geoposition geoposition )
