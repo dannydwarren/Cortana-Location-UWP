@@ -55,7 +55,7 @@ namespace CortanaAssistant.CortanaAppService
 							//Illegal? Geoposition geoposition = await LocationWrapper.Instance.GetSingleShotLocationAsync();
 
 							//http://www.directionsmag.com/site/latlong-converter/
-							string message = "Current location Decimal Degrees. Latitude 33.1362704. Longitude -117.2943426.";
+							string message = "You're at That Conference, of course.";
 							//string message = "Current location Decimal Degrees. "
 							//	+ $"Latitude {geoposition.Coordinate.Point.Position.Latitude}. "
 							//	+ $"Longitude {geoposition.Coordinate.Point.Position.Longitude}.";
