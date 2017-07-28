@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerAssistant.UI", "ComputerAssistant.UI\ComputerAssistant.UI.csproj", "{68120D7B-083F-45D5-B6D1-A4D0B555162E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CortanaAssistant.CortanaAppService", "CortanaAssistant.CortanaAppService\CortanaAssistant.CortanaAppService.csproj", "{31D1B55B-1324-40C3-8DA1-67A5230BB795}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureWrappers", "FeatureWrappers\FeatureWrappers.csproj", "{11A0E6A6-5890-4213-9BBD-F947E10865F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerAssistant.Bot", "ComputerAssistant.Bot\ComputerAssistant.Bot.csproj", "{7D1798EE-3717-425A-93DD-45B2EBCCA602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,22 @@ Global
 		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x64.Build.0 = Release|x64
 		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x86.ActiveCfg = Release|x86
 		{11A0E6A6-5890-4213-9BBD-F947E10865F7}.Release|x86.Build.0 = Release|x86
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|x64.Build.0 = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|ARM.Build.0 = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|x64.ActiveCfg = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|x64.Build.0 = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D1798EE-3717-425A-93DD-45B2EBCCA602}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
