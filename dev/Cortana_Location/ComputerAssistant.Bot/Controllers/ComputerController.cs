@@ -30,7 +30,12 @@ namespace ComputerAssistant.Bot.Controllers
         {
             public async Task StartAsync(IDialogContext context)
             {
-                await context.PostAsync("When you're ready to report say: Captain's Log.");
+                var message = context.MakeMessage();
+                message.Text = "When you're ready to report say: Captain's Log.";
+                message.Speak = message.Text;
+                message.InputHint = InputHints.ExpectingInput;
+
+                await context.PostAsync(message);
 
                 context.Wait(MessageReceivedAsync);
             }
@@ -55,7 +60,12 @@ namespace ComputerAssistant.Bot.Controllers
             {
                 var resultFromLog = await result;
 
-                await context.PostAsync($"Your report captain: {resultFromLog}");
+                var message = context.MakeMessage();
+                message.Text = $"Your report captain: {resultFromLog}";
+                message.Speak = message.Text;
+                message.InputHint = InputHints.ExpectingInput;
+
+                await context.PostAsync(message);
 
                 context.Wait(MessageReceivedAsync);
             }
@@ -68,7 +78,13 @@ namespace ComputerAssistant.Bot.Controllers
 
             public async Task StartAsync(IDialogContext context)
             {
-                await context.PostAsync("Go ahead captain.");
+                var message = context.MakeMessage();
+                message.Text = "Go ahead captain.";
+                message.Speak = message.Text;
+                message.InputHint = InputHints.ExpectingInput;
+
+                await context.PostAsync(message);
+
 
                 context.Wait(MessageReceivedAsync);
             }
@@ -78,7 +94,12 @@ namespace ComputerAssistant.Bot.Controllers
                 var response = await result;
                 _logEntry = _logEntry + " " + response.Text;
 
-                await context.PostAsync($"Your entry so far: {_logEntry}");
+                var message = context.MakeMessage();
+                message.Text = $"Your entry so far: {_logEntry}";
+                message.Speak = message.Text + ". Would you like to add more?";
+                message.InputHint = InputHints.IgnoringInput;
+
+                await context.PostAsync(message);
 
                 PromptDialog.Confirm(context, OnResponse, "Would you like to add more?");
             }
@@ -89,7 +110,12 @@ namespace ComputerAssistant.Bot.Controllers
 
                 if (response)
                 {
-                    await context.PostAsync("What would you like to add?");
+                    var message = context.MakeMessage();
+                    message.Text = "What would you like to add?";
+                    message.Speak = message.Text;
+                    message.InputHint = InputHints.ExpectingInput;
+
+                    await context.PostAsync(message);
 
                     context.Wait(MessageReceivedAsync);
                 }
