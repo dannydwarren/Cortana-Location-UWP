@@ -12,7 +12,7 @@ namespace ComputerAssistant.UI.Pages
 
 		private void RecordNotesDemoClickHandler( object sender, RoutedEventArgs e )
 		{
-			Frame.NavigateTo<RecordNotesPage>();
+			Frame.NavigateTo<CaptainsLogPage>();
 		}
 
 		private void LocationServicesDemoClickHandler( object sender, RoutedEventArgs e )

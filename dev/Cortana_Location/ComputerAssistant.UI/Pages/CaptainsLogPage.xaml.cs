@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace ComputerAssistant.UI.Pages
 {
-	public sealed partial class RecordNotesPage : Page
+	public sealed partial class CaptainsLogPage : Page
 	{
 		CancellationTokenSource cancellationSource;
-		public RecordNotesPage()
+		public CaptainsLogPage()
 		{
 			this.InitializeComponent();
 		}

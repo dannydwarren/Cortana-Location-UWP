@@ -149,7 +149,7 @@ namespace ComputerAssistant.UI
 						.TryGetValue( "CaptainsLogDictation", out captainsLogDictation );
 					string dictationText = captainsLogDictation.FirstOrDefault();
 
-					_rootFrame.NavigateTo<RecordNotesPage>( dictationText );
+					_rootFrame.NavigateTo<CaptainsLogPage>( dictationText );
 
 				}
 				else if ( string.Equals( voiceCommandName, "locationLog" ) )
