@@ -10,6 +10,8 @@ using Windows.UI.Xaml.Navigation;
 using ComputerAssistant.UI.Pages;
 using System.Threading.Tasks;
 using Windows.Media.SpeechRecognition;
+using Windows.Storage;
+using Windows.ApplicationModel.VoiceCommands;
 
 namespace ComputerAssistant.UI
 {
@@ -21,7 +23,6 @@ namespace ComputerAssistant.UI
 		{
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
-			RegisterVoiceCommands();
 			this.UnhandledException += App_UnhandledException;
 			TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 		}
@@ -36,16 +37,14 @@ namespace ComputerAssistant.UI
 			Debug.WriteLine( e.Exception );
 		}
 
-		private async void RegisterVoiceCommands()
+		private async Task RegisterVoiceCommands()
 		{
 			var storageFile =
-				await Windows.Storage.StorageFile
-				.GetFileFromApplicationUriAsync( new Uri( "ms-appx:///VoiceCommandDefinition.xml" ) );
+				await StorageFile.GetFileFromApplicationUriAsync( new Uri( "ms-appx:///VoiceCommandDefinition.xml" ) );
 
 			try
 			{
-				await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager
-					.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
+				await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync( storageFile );
 
 				Debug.WriteLine( "Voice Commands Registered" );
 			}
@@ -55,8 +54,11 @@ namespace ComputerAssistant.UI
 			}
 		}
 
-		protected override void OnLaunched( LaunchActivatedEventArgs e )
+		protected async override void OnLaunched( LaunchActivatedEventArgs e )
 		{
+            Task registerVoiceCommandsTask = RegisterVoiceCommands();
+            await CredsProvider.Initialize();
+
 			_rootFrame = Window.Current.Content as Frame;
 
 			// Do not repeat app initialization when the Window already has content,
@@ -86,7 +88,18 @@ namespace ComputerAssistant.UI
 			}
 			// Ensure the current window is active
 			Window.Current.Activate();
-		}
+
+            try
+            {
+                await registerVoiceCommandsTask;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+
+        }
 
 		void OnNavigationFailed( object sender, NavigationFailedEventArgs e )
 		{

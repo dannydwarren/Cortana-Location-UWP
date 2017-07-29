@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\GeopointToStringConverter.cs" />
+    <Compile Include="CredsProvider.cs" />
     <Compile Include="FrameExtensions.cs" />
     <Compile Include="Models\BeamedLocation.cs" />
     <Compile Include="Models\Bindable.cs" />
@@ -118,6 +119,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="app.creds" />
     <None Include="ComputerAssistant.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
