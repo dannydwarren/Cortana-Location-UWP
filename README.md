@@ -9,6 +9,7 @@ Hey, Cortana! Where am I?
 - Browse to https://dev.botframework.com/bots/
 	- Create a bot
 	- Add Direct Line Channel
+	- Add Cortana Skill Channel
 - Update `Web.config` with the required settings
 	- AppSetting Key = Bot Framework Value
 	- BotId = Bot Handle
