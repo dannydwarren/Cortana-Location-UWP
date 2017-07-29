@@ -78,7 +78,7 @@ namespace ComputerAssistant.Bot.Controllers
                 var response = await result;
                 _logEntry = _logEntry + " " + response.Text;
 
-                await context.PostAsync($"Your entry so far: {_logEntry}.");
+                await context.PostAsync($"Your entry so far: {_logEntry}");
 
                 PromptDialog.Confirm(context, OnResponse, "Would you like to add more?");
             }
