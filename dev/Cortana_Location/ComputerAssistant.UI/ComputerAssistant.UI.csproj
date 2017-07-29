@@ -94,6 +94,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BotCommunication\ComputerAssistantBot.cs" />
     <Compile Include="Converters\GeopointToStringConverter.cs" />
     <Compile Include="CredsProvider.cs" />
     <Compile Include="FrameExtensions.cs" />
