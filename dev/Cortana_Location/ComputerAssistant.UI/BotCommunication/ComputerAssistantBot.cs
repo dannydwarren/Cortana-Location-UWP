@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Bot.Connector.DirectLine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace ComputerAssistant.UI.BotCommunication
 {
@@ -17,35 +20,61 @@ namespace ComputerAssistant.UI.BotCommunication
             _client = new DirectLineClient(CredsProvider.DirectLineKey);
         }
 
-        public async Task<IEnumerable<string>> StartConversation()
+        public async Task StartConversation()
         {
             _conversation = await _client.Conversations.StartConversationAsync();
-            return await ReceiveMessage();
         }
 
-        public async Task<IEnumerable<string>> SendMessage(string message)
+        public async Task SendMessage(string message)
         {
-            await _client.Conversations.PostActivityAsync(_conversation.ConversationId, new Activity
+            var activity = new Activity
             {
-                Action = ActionTypes.Call,
+                From = new ChannelAccount("Captain"),
                 Text = message,
-                From = new ChannelAccount("ComputerAssistantUI")
-            });
+                Type = ActivityTypes.Message
+            };
 
-            return await ReceiveMessage();
+            await _client.Conversations.PostActivityAsync(_conversation.ConversationId, activity);
         }
 
-        private async Task<IEnumerable<string>> ReceiveMessage()
+        public async Task<string> CheckForReply()
         {
-            var activitySet = await _client.Conversations.GetActivitiesAsync(_conversation.ConversationId);
+            var activitySet = await _client.Conversations.GetActivitiesAsync(_conversation.ConversationId, _lastWatermark);
             if (string.IsNullOrWhiteSpace(activitySet.Watermark))
             {
-                return new List<string>();
+                return string.Empty;
             }
             _lastWatermark = activitySet.Watermark;
-            var messages = activitySet.Activities.Where(a => a.Id == BotId).Select(a => a.Text).ToList();
+            var activity = activitySet.Activities.LastOrDefault(a => a.From.Id == BotId);
 
-            return messages;
+            string message = activity?.Text ?? string.Empty;
+            if (activity.Attachments.Any())
+            {
+                try
+                {
+                    var prompt = JsonConvert.DeserializeObject<Prompt>(activity.Attachments.First().Content.ToString());
+
+                    message = prompt.text;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+            return message;
+        }
+
+        public class Button
+        {
+            public string type { get; set; }
+            public string title { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Prompt
+        {
+            public string text { get; set; }
+            public List<Button> buttons { get; set; }
         }
     }
 }
