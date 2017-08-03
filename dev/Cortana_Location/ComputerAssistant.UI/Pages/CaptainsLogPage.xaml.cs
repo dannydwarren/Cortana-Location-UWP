@@ -151,8 +151,6 @@ namespace ComputerAssistant.UI.Pages
                     || string.IsNullOrWhiteSpace(dictationResult.Text)
                     || _cancellationSource.IsCancellationRequested)
                 {
-                    captainsLogDictationRecognizer.Dispose();
-
                     continue;
                 }
 

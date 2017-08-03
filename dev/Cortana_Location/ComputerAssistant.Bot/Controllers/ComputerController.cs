@@ -30,7 +30,7 @@ namespace ComputerAssistant.Bot.Controllers
         {
             public async Task StartAsync(IDialogContext context)
             {
-                var message = context.MakeMessage();
+                IMessageActivity message = context.MakeMessage();
                 message.Text = "When you're ready to report say: Captain's Log.";
                 message.Speak = message.Text;
                 message.InputHint = InputHints.ExpectingInput;
