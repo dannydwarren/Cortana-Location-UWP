@@ -39,11 +39,14 @@ namespace ComputerAssistant.UI.BotCommunication
 
         public async Task<string> CheckForReply()
         {
-            var activitySet = await _client.Conversations.GetActivitiesAsync(_conversation.ConversationId, _lastWatermark);
+            var activitySet =
+                await _client.Conversations.GetActivitiesAsync(_conversation.ConversationId, _lastWatermark);
+
             if (string.IsNullOrWhiteSpace(activitySet.Watermark))
             {
                 return string.Empty;
             }
+
             _lastWatermark = activitySet.Watermark;
             var activity = activitySet.Activities.LastOrDefault(a => a.From.Id == BotId);
 

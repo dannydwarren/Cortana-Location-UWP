@@ -113,11 +113,12 @@ namespace ComputerAssistant.UI
 			deferral.Complete();
 		}
 
-		protected override void OnActivated( IActivatedEventArgs args )
+		protected async override void OnActivated( IActivatedEventArgs args )
 		{
 			base.OnActivated( args );
+            await CredsProvider.Initialize();
 
-			_rootFrame = Window.Current.Content as Frame;
+            _rootFrame = Window.Current.Content as Frame;
 
 			if ( _rootFrame == null )
 			{
@@ -138,9 +139,6 @@ namespace ComputerAssistant.UI
 				{
 					Debug.WriteLine( item );
 				}
-
-
-				var command = speechRecognitionResult.Text;
 
 				if ( string.Equals( voiceCommandName, "captainsLog" ) )
 				{

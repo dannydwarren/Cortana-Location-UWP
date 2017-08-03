@@ -33,22 +33,17 @@ namespace ComputerAssistant.UI.Pages
             _cancellationSource = new CancellationTokenSource();
             _bot = new ComputerAssistantBot();
 
-            //StartVoiceRecognition();
             StartCaptainsLogBot();
 
             if (!LogEntries.Any())
             {
-                //Seed for this run
                 AddLogEntry("Starting App");
-
-                //TODO: Go to disk and get the file.
             }
 
             if (e.Parameter != null)
             {
                 AddLogEntry(e.Parameter.ToString());
             }
-
         }
 
         private async void StartCaptainsLogBot()
@@ -60,7 +55,7 @@ namespace ComputerAssistant.UI.Pages
                 if (message == "When you're ready to report say: Captain's Log.")
                 {
                     await SpeakText(message);
-                    var result = await StartSpeechRecognition(new[] { "Captains Log", "Computer Captains Log" });
+                    var result = await StartSpeechRecognition(new[] { "Captains Log" });
                     if (!_cancellationSource.IsCancellationRequested)
                     {
                         await _bot.SendMessage(result);
@@ -87,7 +82,7 @@ namespace ComputerAssistant.UI.Pages
                 {
                     AddLogEntry(message.Substring("Your report captain: ".Length));
                     await SpeakText(message);
-                    var result = await StartSpeechRecognition(new[] { "Captains Log", "Computer Captains Log" });
+                    var result = await StartSpeechRecognition(new[] { "Captains Log" });
                     if (!_cancellationSource.IsCancellationRequested)
                     {
                         await _bot.SendMessage(result);
@@ -105,13 +100,13 @@ namespace ComputerAssistant.UI.Pages
         {
             SpeechRecognizer speechRecognizerCaptainsLogCommand = new SpeechRecognizer();
 
+            ISpeechRecognitionConstraint commandConstraint = new SpeechRecognitionListConstraint(commands);
+            speechRecognizerCaptainsLogCommand.Constraints.Add(commandConstraint);
+            await speechRecognizerCaptainsLogCommand.CompileConstraintsAsync();
+
             string result = string.Empty;
             while (!_cancellationSource.IsCancellationRequested)
             {
-                ISpeechRecognitionConstraint commandConstraint = new SpeechRecognitionListConstraint(commands);
-                speechRecognizerCaptainsLogCommand.Constraints.Add(commandConstraint);
-                await speechRecognizerCaptainsLogCommand.CompileConstraintsAsync();
-
                 SpeechRecognitionResult commandResult = await speechRecognizerCaptainsLogCommand.RecognizeAsync();
 
                 if (commandResult.Status != SpeechRecognitionResultStatus.Success
@@ -134,21 +129,21 @@ namespace ComputerAssistant.UI.Pages
             var captainsLogDictationRecognizer = new SpeechRecognizer();
             string result = string.Empty;
 
+            ISpeechRecognitionConstraint dictationConstraint =
+                new SpeechRecognitionTopicConstraint(
+                    SpeechRecognitionScenario.Dictation, topicHint, tag);
+
+            captainsLogDictationRecognizer.Constraints.Add(dictationConstraint);
+
+            await captainsLogDictationRecognizer.CompileConstraintsAsync();
+
+            captainsLogDictationRecognizer.UIOptions.ExampleText = exampleText;
+            captainsLogDictationRecognizer.UIOptions.AudiblePrompt = audiblePrompt;
+            captainsLogDictationRecognizer.UIOptions.IsReadBackEnabled = true;
+            captainsLogDictationRecognizer.UIOptions.ShowConfirmation = true;
+
             while (!_cancellationSource.IsCancellationRequested)
             {
-                ISpeechRecognitionConstraint dictationConstraint =
-                    new SpeechRecognitionTopicConstraint(
-                        SpeechRecognitionScenario.Dictation, topicHint, tag);
-
-                captainsLogDictationRecognizer.Constraints.Add(dictationConstraint);
-
-                await captainsLogDictationRecognizer.CompileConstraintsAsync();
-
-                captainsLogDictationRecognizer.UIOptions.ExampleText = exampleText;
-                captainsLogDictationRecognizer.UIOptions.AudiblePrompt = audiblePrompt;
-                captainsLogDictationRecognizer.UIOptions.IsReadBackEnabled = true;
-                captainsLogDictationRecognizer.UIOptions.ShowConfirmation = true;
-
                 SpeechRecognitionResult dictationResult = await captainsLogDictationRecognizer.RecognizeWithUIAsync();
 
                 if (dictationResult.Status != SpeechRecognitionResultStatus.Success
@@ -188,10 +183,10 @@ namespace ComputerAssistant.UI.Pages
 
         private async Task SpeakText(string textToSpeak)
         {
-            SpeechSynthesizer speechSynth = new SpeechSynthesizer();
-
             // The media object for controlling and playing audio.
             MediaElement mediaElement = TextToSpeechMediaElement;
+
+            SpeechSynthesizer speechSynth = new SpeechSynthesizer();
 
             // Generate the audio stream from plain text.
             SpeechSynthesisStream stream = await speechSynth.SynthesizeTextToStreamAsync(textToSpeak);
