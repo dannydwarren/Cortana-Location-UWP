@@ -31,7 +31,6 @@ namespace ComputerAssistant.UI.Pages
             base.OnNavigatedTo(e);
 
             _cancellationSource = new CancellationTokenSource();
-            _bot = new ComputerAssistantBot();
 
             StartCaptainsLogBot();
 
@@ -48,6 +47,7 @@ namespace ComputerAssistant.UI.Pages
 
         private async void StartCaptainsLogBot()
         {
+            _bot = new ComputerAssistantBot();
             await _bot.StartConversation();
             while (!_cancellationSource.IsCancellationRequested)
             {
@@ -55,7 +55,7 @@ namespace ComputerAssistant.UI.Pages
                 if (message == "When you're ready to report say: Captain's Log.")
                 {
                     await SpeakText(message);
-                    var result = await StartSpeechRecognition(new[] { "Captains Log" });
+                    var result = await StartSpeechRecognition(new[] { "Captains Log", "Captain's Log" });
                     if (!_cancellationSource.IsCancellationRequested)
                     {
                         await _bot.SendMessage(result);
@@ -98,16 +98,18 @@ namespace ComputerAssistant.UI.Pages
 
         private async Task<string> StartSpeechRecognition(IEnumerable<string> commands)
         {
-            SpeechRecognizer speechRecognizerCaptainsLogCommand = new SpeechRecognizer();
+            SpeechRecognizer speechRecognizer = new SpeechRecognizer();
 
             ISpeechRecognitionConstraint commandConstraint = new SpeechRecognitionListConstraint(commands);
-            speechRecognizerCaptainsLogCommand.Constraints.Add(commandConstraint);
-            await speechRecognizerCaptainsLogCommand.CompileConstraintsAsync();
+
+            speechRecognizer.Constraints.Add(commandConstraint);
+
+            await speechRecognizer.CompileConstraintsAsync();
 
             string result = string.Empty;
             while (!_cancellationSource.IsCancellationRequested)
             {
-                SpeechRecognitionResult commandResult = await speechRecognizerCaptainsLogCommand.RecognizeAsync();
+                SpeechRecognitionResult commandResult = await speechRecognizer.RecognizeAsync();
 
                 if (commandResult.Status != SpeechRecognitionResultStatus.Success
                     || commandResult.Confidence == SpeechRecognitionConfidence.Rejected
@@ -120,31 +122,31 @@ namespace ComputerAssistant.UI.Pages
                 break;
             }
 
-            speechRecognizerCaptainsLogCommand.Dispose();
+            speechRecognizer.Dispose();
             return result;
         }
 
         private async Task<string> StartSpeechRecognitionWithUI(string topicHint, string tag, string exampleText, string audiblePrompt)
         {
-            var captainsLogDictationRecognizer = new SpeechRecognizer();
+            var speechRecognizer = new SpeechRecognizer();
             string result = string.Empty;
 
             ISpeechRecognitionConstraint dictationConstraint =
                 new SpeechRecognitionTopicConstraint(
                     SpeechRecognitionScenario.Dictation, topicHint, tag);
 
-            captainsLogDictationRecognizer.Constraints.Add(dictationConstraint);
+            speechRecognizer.Constraints.Add(dictationConstraint);
 
-            await captainsLogDictationRecognizer.CompileConstraintsAsync();
+            await speechRecognizer.CompileConstraintsAsync();
 
-            captainsLogDictationRecognizer.UIOptions.ExampleText = exampleText;
-            captainsLogDictationRecognizer.UIOptions.AudiblePrompt = audiblePrompt;
-            captainsLogDictationRecognizer.UIOptions.IsReadBackEnabled = true;
-            captainsLogDictationRecognizer.UIOptions.ShowConfirmation = true;
+            speechRecognizer.UIOptions.ExampleText = exampleText;
+            speechRecognizer.UIOptions.AudiblePrompt = audiblePrompt;
+            speechRecognizer.UIOptions.IsReadBackEnabled = true;
+            speechRecognizer.UIOptions.ShowConfirmation = true;
 
             while (!_cancellationSource.IsCancellationRequested)
             {
-                SpeechRecognitionResult dictationResult = await captainsLogDictationRecognizer.RecognizeWithUIAsync();
+                SpeechRecognitionResult dictationResult = await speechRecognizer.RecognizeWithUIAsync();
 
                 if (dictationResult.Status != SpeechRecognitionResultStatus.Success
                     || dictationResult.Confidence == SpeechRecognitionConfidence.Rejected
@@ -159,7 +161,7 @@ namespace ComputerAssistant.UI.Pages
                 break;
             }
 
-            captainsLogDictationRecognizer.Dispose();
+            speechRecognizer.Dispose();
             return result;
         }
 

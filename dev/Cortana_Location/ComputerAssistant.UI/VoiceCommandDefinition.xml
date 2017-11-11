@@ -6,10 +6,9 @@
 
     <Command Name="captainsLog">
       <Example>  Captain's Log  </Example>
-      <ListenFor > Captains Log {CaptainsLogDictation} </ListenFor>
+      <ListenFor> Captains Log {CaptainsLogDictation} </ListenFor>
       <Feedback> Creating Captains Log... </Feedback>
       <Navigate Target="Pages/RecordNotesPage.xaml"/>
-
     </Command>
 
     <Command Name="currentLocation">

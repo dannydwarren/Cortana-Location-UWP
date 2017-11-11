@@ -39,7 +39,7 @@ namespace ComputerAssistant.UI.BotCommunication
 
         public async Task<string> CheckForReply()
         {
-            var activitySet =
+            ActivitySet activitySet =
                 await _client.Conversations.GetActivitiesAsync(_conversation.ConversationId, _lastWatermark);
 
             if (string.IsNullOrWhiteSpace(activitySet.Watermark))
@@ -57,7 +57,7 @@ namespace ComputerAssistant.UI.BotCommunication
                 {
                     var prompt = JsonConvert.DeserializeObject<Prompt>(activity.Attachments.First().Content.ToString());
 
-                    message = prompt.text;
+                    message = prompt.Text;
                 }
                 catch (Exception ex)
                 {
@@ -69,15 +69,15 @@ namespace ComputerAssistant.UI.BotCommunication
 
         public class Button
         {
-            public string type { get; set; }
-            public string title { get; set; }
-            public string value { get; set; }
+            public string Type { get; set; }
+            public string Title { get; set; }
+            public string Value { get; set; }
         }
 
         public class Prompt
         {
-            public string text { get; set; }
-            public List<Button> buttons { get; set; }
+            public string Text { get; set; }
+            public List<Button> Buttons { get; set; }
         }
     }
 }

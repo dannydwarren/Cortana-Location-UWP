@@ -56,7 +56,7 @@ namespace ComputerAssistant.Bot.Controllers
                 }
             }
 
-            private async Task OnResume(IDialogContext context, IAwaitable<object> result)
+            private async Task OnResume(IDialogContext context, IAwaitable<string> result)
             {
                 var resultFromLog = await result;
 

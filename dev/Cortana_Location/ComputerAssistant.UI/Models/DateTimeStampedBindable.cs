@@ -13,7 +13,7 @@ namespace ComputerAssistant.UI.Models
 
         public string StardateString => $"{StarDate.ToStarDate()}";
 
-        public string CurrentDateString => StarDate.ToLocalTime().ToString("yyyy-MM-DD HH:mm:ss:ff tt zzz");
+        public string CurrentDateString => StarDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss:ff tt zzz");
     }
 
     public static class Extensions
